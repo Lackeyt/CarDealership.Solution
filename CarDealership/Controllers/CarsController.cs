@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Dealership.Controllers
 {
-    public class CarController : Controller
+    public class CarsController : Controller
     {
 
       [HttpGet("/Cars")]
