@@ -9,10 +9,10 @@
 <ul>
   @foreach (Car car in Model)
   {
-    <li>@car.MakeModel
+    <li>Car: @car.MakeModel
       <ul>
-        <li>@car.Price</li>
-        <li>@car.Miles</li>
+        <li>Price: $@car.Price</li>
+        <li>Miles: @car.Miles</li>
       </ul>
     </li>
   }
@@ -23,3 +23,5 @@
   <input id="stringMaxPrice" name="stringMaxPrice" type="number" value="0">
   <button type="submit">Filter</button>
 </form>
+
+<a href="/">Home</a>

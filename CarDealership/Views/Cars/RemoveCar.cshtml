@@ -1,0 +1,12 @@
+@using Dealership.Models;
+
+<form action="/Cars/Remove" method="post">
+  <label for="carToRemove">Remove a car:</label>
+  <select id="carToRemove" name="carToRemove">
+    @foreach (Car car in Car.GetAll())
+    {
+      <option value="@car.MakeModel">@car.MakeModel</option>
+    }
+  </select>
+  <button type="submit">Remove Car</button>
+</form>
