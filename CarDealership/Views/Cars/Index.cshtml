@@ -20,7 +20,13 @@
 
 <form action="/Cars" method="post">
   <label for="stringMaxPrice">Filter By Max Price:</label>
-  <input id="stringMaxPrice" name="stringMaxPrice" type="number" value="0">
+  <input id="stringMaxPrice" name="stringMaxPrice" type="number" min="0">
+  <label for="stringMinPrice">Filter By Min Price:</label>
+  <input id="stringMinPrice" name="stringMinPrice" type="number" min="0">
+  <label for="stringMinMileage">Filter By Mininum Mileage:</label>
+  <input id="stringMinMileage" name="stringMinMileage" type="number" min="0">
+  <label for="stringMaxMileage">Filter By Maximum Mileage</label>
+  <input id="stringMaxMileage" name="stringMaxMileage" type="number" min="0">
   <button type="submit">Filter</button>
 </form>
 

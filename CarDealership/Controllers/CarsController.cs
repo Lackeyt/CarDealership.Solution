@@ -8,12 +8,12 @@ namespace Dealership.Controllers
   public class CarsController : Controller
   {
     [HttpGet("/Cars")]
-    public ActionResult Index(double maxPrice = Double.PositiveInfinity)
+    public ActionResult Index(double maxPrice = Double.PositiveInfinity, double minPrice = 0, double minMileage = 0, double maxMileage = double.PositiveInfinity)
     {
       List<Car> Cars = new List<Car>();
       foreach(Car car in Car.GetAll())
       {
-        if (car.Price <= maxPrice)
+        if (car.Price <= maxPrice && car.Price >= minPrice && car.Miles <= maxMileage && car.Miles >= minMileage)
         {
           Cars.Add(car);
         }
@@ -22,10 +22,49 @@ namespace Dealership.Controllers
     }
     
     [HttpPost("/Cars")]
-    public ActionResult FilterPrice(string stringMaxPrice)
-    {
-      double newMaxPrice = double.Parse(stringMaxPrice);
-      return RedirectToAction("Index", new { maxPrice = newMaxPrice });
+    public ActionResult FilterPrice(string stringMaxPrice, string stringMinPrice, string stringMinMileage, string stringMaxMileage)
+    {  
+      double newMaxPrice;
+      double newMinPrice;
+      double newMinMileage;
+      double newMaxMileage;
+
+      if (stringMaxPrice == null)
+      {
+        newMaxPrice = Double.PositiveInfinity;
+      } 
+      else
+      {
+        newMaxPrice = double.Parse(stringMaxPrice);
+      }
+      
+      if (stringMinPrice == null)
+      {
+        newMinPrice = 0;
+      }
+      else
+      {
+        newMinPrice = double.Parse(stringMinPrice);
+      }
+      
+      if (stringMinMileage == null)
+      {
+        newMinMileage = 0;
+      }
+      else
+      {
+        newMinMileage = double.Parse(stringMinMileage);
+      }
+
+      if (stringMaxMileage == null)
+      {
+        newMaxMileage = double.PositiveInfinity;
+      }
+      else
+      {
+        newMaxMileage = double.Parse(stringMaxMileage);
+      }
+      return RedirectToAction("Index", new { maxPrice = newMaxPrice, minPrice = newMinPrice, minMileage = newMinMileage, maxMileage = newMaxMileage });
     }
 
     [HttpGet("/Cars/Add")]
