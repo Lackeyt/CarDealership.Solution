@@ -1,0 +1,25 @@
+@using Dealership.Models;
+
+<h1>All Cars</h1>
+
+@if (Model.Count == 0)
+{
+  <p>There are no cars available.</p>
+}
+<ul>
+  @foreach (Car car in Model)
+  {
+    <li>@car.MakeModel
+      <ul>
+        <li>@car.Price</li>
+        <li>@car.Miles</li>
+      </ul>
+    </li>
+  }
+</ul>
+
+<form action="/Cars" method="post">
+  <label for="stringMaxPrice">Filter By Max Price:</label>
+  <input id="stringMaxPrice" name="stringMaxPrice" type="number">
+  <button type="submit">Filter</button>
+</form>
